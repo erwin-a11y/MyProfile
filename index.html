@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Di bagian <head> -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
+  <title>ErwinDev Portofolio</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="ErwinDev Portofolio" />
+  <meta property="og:description" content="Selamat datang di portofolio ErwinDev, tempat saya berbagi proyek dan keahlian di bidang pengembangan web." />
+  <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfYLd-Ft6mAnyMya5bK9gArMo_Zg6AE_YU-JkKhLHCL6O9Xbw1_XWQIfqi&s=10" />
+  <meta property="og:url" content="https://erwin-a11y.github.io/MyProfile/" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ErwinDev Portofolio" />
+  <meta name="twitter:description" content="Selamat datang di portofolio ErwinDev, tempat saya berbagi proyek dan keahlian di bidang pengembangan web." />
+  <meta name="twitter:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfYLd-Ft6mAnyMya5bK9gArMo_Zg6AE_YU-JkKhLHCL6O9Xbw1_XWQIfqi&s=10" />
+
+</head>
+<body>
+  <style>
+   :root {
+     /*Root Navbar*/
+  --primary-color: #333; /* Warna background navbar */
+  --secondary-color: #f39c12; /* Warna hover navbar */
+  --tertiary-color: #fff; /* Warna teks pada navbar */
+  --overlay-color: rgba(0, 0, 0, 0.5); /* Warna overlay */
+  --menu-background-color: #222; /* Warna background menu (mobile) */
+  --menu-text-color: #fff; /* Warna teks menu */
+  --highlight-color: yellow; /* Warna highlight */
+  
+   --hero-text-color: #ffffff;
+  --hero-overlay-color: rgba(0, 0, 0, 0.3);
+  --hero-button-bg: rgba(255, 255, 255, 0.1);
+  --hero-button-border: rgba(255, 255, 255, 0.5);
+  --hero-button-hover-bg: rgba(0, 0, 0, 0.3);
+  --hero-accent-color: #0dcaf0;
+  --hero-cursor-color: #0dcaf0;
+  
+  
+   --skills-bg-dark: #333;
+  --skills-bg-light: #fff;
+  --skills-font: 'Helvetica Neue', sans-serif;
+  --skills-title-color: #ffffff;
+  --skills-desc-color: #e0e0e0;
+  --skill-box-bg: #ffffff;
+  --skill-box-text: #333333;
+  --skill-box-title: #1e1e1e;
+  --skill-box-list: #555555;
+  --skill-icon-bg: #0dcaf0;
+  --skill-shadow: rgba(0, 0, 0, 0.1);
+  
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  background-color: #f9f9f9;
+}
+body {
+  font-family: sans-serif;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.navbar {
+  background-color: var(--primary-color);
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: var(--tertiary-color);
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.menu li a:hover {
+  color: var(--secondary-color);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--tertiary-color);
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-color);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 9;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+    position: fixed;
+    top: 51px; /* agar tidak menutupi navbar */
+    left: -250px;
+    background-color: var(--menu-background-color);
+    width: 250px;
+    height: 100%;
+    padding-top: 20px;
+    padding: 30px;
+    transition: left 0.3s ease;
+    z-index: 8;
+  }
+
+  .menu.active {
+    left: 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+    z-index: 11;
+  }
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 10px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -10px);
+}
+
+/* Extra spacing so content doesn't get hidden under fixed navbar */
+body::before {
+  content: '';
+  display: block;
+  height: 60px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--tertiary-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo i {
+  color: var(--secondary-color);
+  font-size: 24px;
+}
+.dropdown-language {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background-color: var(--menu-background-color);
+  
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 0.4s ease-out;
+  z-index: 100;
+  min-width: 150px;
+  border-radius: 0 0 8px 8px;
+}
+
+.dropdown-language.active .dropdown-menu {
+  transform: scaleY(1);
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: var(--menu-text-color);
+  text-decoration: none;
+  background: transparent;
+}
+
+.dropdown-menu li a:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.dropdown-menu li a.active-lang {
+  background-color: var(--secondary-color);
+  color: white;
+}
+  </style>
+  <div class="navbar">
+    <div class="container">
+     <div class="logo"><i class="fas fa-code"></i> <span>Erwin <strong style="color:yellow;">Dev</strong></span></div>
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="menu" id="menu">
+        <li><a href="#hero" data-id="home">Beranda</a></li>
+<li><a href="#skillland" data-id="bio">Biografi</a></li>
+<li><a href="#recent-work" data-id="skills">Keahlian</a></li>
+<li><a href="#sponsorship-section" data-id="language">Partner & Sponsor</a></li>
+<li><a href="#career-section" data-id="shop">Karir</a></li>
+<li><a href="#contact-section" data-id="contact">Kontak Saya</a></li>
+       <li class="dropdown-language">
+  <a href="#" class="lang-toggle" onclick="toggleDropdown(event)">
+    <span id="flag-icon">🇮🇩</span> <span id="lang-label">Indonesia</span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a href="#" onclick="setLanguage('id')" class="active-lang">🇮🇩 Indonesia</a></li>
+    <li><a href="#" onclick="setLanguage('en')">🇬🇧 English</a></li>
+  </ul>
+</li>
+      </ul>
+    </div>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  
+  <script>
+  let currentLanguage = 'id'; // default
+
+  const translations = {
+    id: {
+      home: "Beranda",
+      bio: "Biografi",
+      skills: "Keahlian",
+      language: "Bahasa",
+      shop: "Belanja",
+      contact: "Kontak Saya",
+      langLabel: "Indonesia",
+      flag: "🇮🇩"
+    },
+    en: {
+      home: "Home",
+      bio: "Biography",
+      skills: "Skills",
+      language: "Language",
+      shop: "Shop",
+      contact: "Contact Me",
+      langLabel: "English",
+      flag: "🇬🇧"
+    }
+  };
+</script>
+<script>
+  function toggleDropdown(event) {
+    event.preventDefault();
+    const dropdown = event.currentTarget.closest('.dropdown-language');
+    dropdown.classList.toggle('active');
+
+    // Klik di luar = tutup
+    document.addEventListener('click', function closeDropdown(e) {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('active');
+        document.removeEventListener('click', closeDropdown);
+      }
+    });
+  }
+
+function setLanguage(lang) {
+  currentLanguage = lang;
+  const text = translations[lang];
+
+  // Ubah semua menu
+  document.querySelectorAll('.menu a[data-id]').forEach(link => {
+    const id = link.getAttribute('data-id');
+    link.textContent = text[id];
+  });
+
+  // Update label dan bendera
+  document.getElementById('lang-label').textContent = text.langLabel;
+  document.getElementById('flag-icon').textContent = text.flag;
+
+  // Highlight bahasa aktif
+  document.querySelectorAll('.dropdown-menu li a').forEach(a => a.classList.remove('active-lang'));
+  document.querySelector(`.dropdown-menu li a[onclick*="${lang}"]`).classList.add('active-lang');
+
+  // Tutup dropdown
+  document.querySelector('.dropdown-language').classList.remove('active');
+}
+</script>
+<script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    const overlay = document.getElementById('overlay');
+
+   toggle.addEventListener('click', () => {
+  toggle.classList.toggle('active');
+  menu.classList.toggle('active');
+  overlay.classList.toggle('active');
+  
+  document.body.classList.toggle('no-scroll');
+});
+
+overlay.addEventListener('click', () => {
+  toggle.classList.remove('active');
+  menu.classList.remove('active');
+  overlay.classList.remove('active');
+
+  document.body.classList.remove('no-scroll');
+});
+  </script>
+  
+<!-- hero -->
+<section class="hero" id="hero">
+  <div class="hero-container">
+    <div class="hero-left">
+      <img src="Erwin.png" alt="Foto Erwin">
+    </div>
+    <div class="hero-right">
+ <h1 style="position: relative; min-height: 2.5em;">
+  <span id="typing1"></span><br>
+  <span style="color: #0dcaf0;" id="typing2-website"></span><span id="typing2-rest"></span>
+  
+
+  <!-- Dummy untuk menjaga tinggi, tapi tidak geser -->
+  <span style="visibility: hidden; position: absolute;">
+    Dummy Teks
+  </span>
+</h1>
+<p class="mt-2" id="typing3" style="position: relative; min-height: 1.5em;">
+  
+</p>
+   <p style="visibility: hidden; position: relative; margin-bottom:10px;">
+    Dummy Teks
+  </p>
+     <a href="#skillland" id="startButton" class="btn btn-outline-light mt-3" style="opacity: 0; display: inline-block;">
+  <i class="fas fa-paper-plane"></i> Mulai
+</a>
+      
+  <!-- Dummy text agar posisi tidak berubah -->
+  <span style="visibility: hidden;">Saya adalah seorang progamer, motivator, dan pendidik.</span>
+    </div>
+  </div>
+</section>
+<style>
+
+/* Terapkan animasi saat elemen muncul */
+.hero-left img,
+.hero-right {
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+/* Delay untuk efek bertahap */
+.hero-left img {
+  animation-delay: 0.3s;
+}
+
+.hero-right {
+  animation-delay: 0.6s;
+}
+
+.hero {
+  background: url('wpkue.png') no-repeat center center/cover;
+  padding: 100px 20px;
+  position: relative;
+  color: var(--hero-text-color);
+  bottom: 20px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--hero-overlay-color);
+  z-index: 1;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.hero-left img {
+  width: 300px;
+}
+
+.hero-right {
+  max-width: 600px;
+}
+
+.hero-right h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero-right p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--hero-button-bg);
+  border: 2px solid var(--hero-button-border);
+  color: var(--hero-text-color);
+  text-decoration: none;
+  transition: 0.3s;
+  border-radius: 5px;
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+}
+
+.btn:hover {
+  background: var(--hero-button-hover-bg);
+  color: var(--hero-text-color);
+}
+
+/* Tambahan animasi */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.typing-1 {
+  width: 0ch;
+  animation: typing1 2.5s steps(15) forwards;
+  border-right: 2px solid var(--hero-cursor-color);
+}
+
+.typing-2 {
+  width: 0ch;
+  animation: typing2 3s steps(30) forwards;
+  animation-delay: 2.6s;
+  border-right: 2px solid var(--hero-cursor-color);
+  visibility: hidden;
+}
+
+@keyframes typing1 {
+  from { width: 0ch; }
+  to { width: 10ch; }
+}
+
+@keyframes typing2 {
+  0% {
+    visibility: visible;
+    width: 0ch;
+  }
+  100% {
+    visibility: visible;
+    width: 22ch;
+    border-right: none;
+  }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+/* Ganti warna teks span langsung inline */
+.hero-right h1 span[style*="color: #0dcaf0"] {
+  color: var(--hero-accent-color) !important;
+}
+</style>
+<script>
+  const text1 = "Selamat Datang di";
+  const textWebsite = "Website Saya";
+  const textAfter = ",";
+  
+  // Pecah teks agar "Erwin Dev" bisa dibungkus <strong>
+  const text3a = "Nama Saya ";
+  const text3b = "<strong>Erwin Dev</strong>";
+  const text3c = ", Saya adalah seorang progamer, motivator, dan pendidik. Terimakasih telah berkunjung.";
+
+  const el1 = document.getElementById("typing1");
+  const elWebsite = document.getElementById("typing2-website");
+  const elRest = document.getElementById("typing2-rest");
+  const elText3 = document.getElementById("typing3");
+
+  let i = 0;
+
+  function typeText1() {
+    if (i < text1.length) {
+      el1.innerHTML += text1.charAt(i);
+      i++;
+      setTimeout(typeText1, 100);
+    } else {
+      i = 0;
+      setTimeout(typeWebsite, 300);
+    }
+  }
+
+  function typeWebsite() {
+    if (i < textWebsite.length) {
+      elWebsite.innerHTML += textWebsite.charAt(i);
+      i++;
+      setTimeout(typeWebsite, 50);
+    } else {
+      i = 0;
+      setTimeout(typeRest, 200);
+    }
+  }
+
+  function typeRest() {
+    if (i < textAfter.length) {
+      elRest.innerHTML += textAfter.charAt(i);
+      i++;
+      setTimeout(typeRest, 50);
+    } else {
+      i = 0;
+      setTimeout(typeText3a, 200);
+    }
+  }
+
+  function typeText3a() {
+    if (i < text3a.length) {
+      elText3.innerHTML += text3a.charAt(i);
+      i++;
+      setTimeout(typeText3a, 50);
+    } else {
+      i = 0;
+      elText3.innerHTML += text3b; // langsung masukkan "Erwin Dev" tebal
+      setTimeout(typeText3c, 200);
+    }
+  }
+function typeText3c() {
+  if (i < text3c.length) {
+    elText3.innerHTML += text3c.charAt(i);
+    i++;
+    setTimeout(typeText3c, 50);
+  } else {
+    const btn = document.getElementById("startButton");
+    btn.classList.add("fade-in");
+    btn.style.opacity = 1;
+  }
+}
+  window.addEventListener("DOMContentLoaded", typeText1);
+</script>
+
+<!-- skill-land -->
+<section class="skill-land" id="skillland">
+  <div class="skills-section">
+    <div class="container-skill">
+      <!-- Intro -->
+      <div class="intro-text" data-aos="fade-up">
+        <h2 class="intro-title">Halo, saya Erwin <span style="color:var(--highlight-color);">Dev</span>. Senang bertemu dengan Anda.</h2>
+        <p class="intro-desc">
+          Selama 12 tahun terakhir, saya telah menjalani perjalanan kreatif—bekerja jarak jauh dengan berbagai agensi, membantu startup berkembang, dan berkolaborasi dengan orang-orang hebat untuk membangun produk digital yang memudahkan hidup. Saya adalah sosok yang penasaran, santai dalam menyelesaikan masalah, dan selalu berusaha menjadi lebih baik dalam pekerjaan saya.
+        </p>
+      </div>
+
+      <!-- Kartu Keahlian -->
+      <div class="skills-grid">
+        <!-- Kartu 1 -->
+        <div class="skill-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon-circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png" alt="Ikon Desainer">
+          </div>
+          <h3>Desainer</h3>
+          <p>Saya menghargai struktur konten yang sederhana, pola desain yang bersih, dan interaksi yang dipikirkan dengan matang.</p>
+          <p><strong>Hal yang saya suka desain:</strong><br> UX, UI, Web, Aplikasi, Logo</p>
+          <p><strong>Alat Desain:</strong></p>
+          <ul>
+            <li>Affinity Designer</li>
+            <li>Figma</li>
+            <li>Pulpen & Kertas</li>
+            <li>Sketch</li>
+            <li>Canva</li>
+          </ul>
+        </div>
+
+        <!-- Kartu 2 -->
+        <div class="skill-box" data-aos="fade-up" data-aos-delay="150">
+          <div class="icon-circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/2721/2721295.png" alt="Ikon Frontend">
+          </div>
+          <h3>Frontend Developer</h3>
+          <p>Saya senang membuat kode dari nol, dan menikmati proses mewujudkan ide di browser.</p>
+          <p><strong>Bahasa yang saya kuasai:</strong><br>HTML, CSS, JS, PHP, Bootstrap, dll.</p>
+          <p><strong>Alat Pengembangan:</strong></p>
+          <ul>
+            <li>Dart</li>
+            <li>Bootstrap</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Javascript</li>
+            <li>PHP</li>
+          </ul>
+        </div>
+
+        <!-- Kartu 3 -->
+        <div class="skill-box" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon-circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Ikon Mentor">
+          </div>
+          <h3>Mentor</h3>
+          <p>Saya benar-benar peduli pada orang lain, dan senang membantu mereka mengembangkan keahlian mereka.</p>
+          <p><strong>Pengalaman yang saya miliki:</strong><br> UX/UI, Desain Produk, Freelance, Fotografi, Pengembang Web, Editor</p>
+          <p><strong>Statistik Mentor:</strong></p>
+          <ul>
+            <li>9+ tahun pengalaman</li>
+            <li>250+ murid</li>
+            <li>2.500+ sesi mentoring</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+
+
+.skill-land {
+  margin-top: -20px;
+}
+
+.skills-section {
+  background: linear-gradient(to bottom, var(--skills-bg-dark) 0%, var(--skills-bg-dark) 50%, var(--skills-bg-light) 50%, var(--skills-bg-light) 100%);
+  padding: 80px 20px;
+  font-family: var(--skills-font);
+  color: var(--skills-title-color);
+}
+
+.container-skill {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.intro-text {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.intro-title {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: var(--skills-title-color);
+}
+
+.intro-desc {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--skills-desc-color);
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.skill-box {
+  background: var(--skill-box-bg);
+  color: var(--skill-box-text);
+  border-radius: 16px;
+  padding: 30px 20px;
+  flex: 1 1 300px;
+  max-width: 320px;
+  box-shadow: 0 4px 20px var(--skill-shadow);
+  text-align: left;
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  background-color: var(--skill-icon-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.icon-circle img {
+  width: 28px;
+  height: 28px;
+}
+
+.skill-box h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--skill-box-title);
+}
+
+.skill-box p {
+  font-size: 14px;
+  margin: 6px 0;
+  line-height: 1.5;
+}
+
+.skill-box ul {
+  padding-left: 20px;
+  margin: 10px 0;
+  font-size: 14px;
+  color: var(--skill-box-list);
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skill-box {
+    max-width: 90%;
+  }
+}
+</style>
+
+<!-- recent-work -->
+<section class="recent-work" id="recent-work">
+  <div class="container-work">
+    <h2 class="work-title" data-aos="fade-up" data-aos-delay="100">Pekerjaan Terakhir Saya</h2>
+    <p class="work-subtitle" data-aos="fade-up" data-aos-delay="150">
+      Beberapa pekerjaan yang baru-baru ini saya selesaikan. Untuk informasi lebih lanjut.
+    </p>
+    
+    <div class="work-grid">
+      <!-- Fotografi & Videografi -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="backdrop/photo.png" alt="Fotografi & Videografi">
+        <div class="work-info">
+          <h3>Fotografi & Videografi</h3>
+          <p>Dokumentasi acara seperti pernikahan, wisuda, PPG pra jabatan, dan produk UMKM dengan kualitas visual profesional.</p>
+        </div>
+      </div>
+
+      <!-- Undangan Digital -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="250">
+        <img src="backdrop/undangan.png" alt="Undangan Digital">
+        <div class="work-info">
+          <h3>Undangan Digital</h3>
+          <p>Desain undangan pernikahan digital yang interaktif dan dapat diakses dengan mudah melalui WhatsApp & web.</p>
+        </div>
+      </div>
+
+      <!-- Web Development -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="backdrop/progaming.png" alt="Web Development">
+        <div class="work-info">
+          <h3>Web Development</h3>
+          <p>Pembuatan website profesional untuk personal branding, bisnis lokal, dan UMKM berbasis HTML, CSS, JS, dan PHP.</p>
+        </div>
+      </div>
+
+      <!-- Mentor Pelatihan Office -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="350">
+        <img src="backdrop/mentor.png" alt="Mentor Pelatihan Office">
+        <div class="work-info">
+          <h3>Mentor Pelatihan Office</h3>
+          <p>Memberikan pelatihan Microsoft Office (Word, Excel, PowerPoint) kepada siswa, mahasiswa, dan pelaku UMKM.</p>
+        </div>
+      </div>
+      
+      <!-- Teacher -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="400">
+        <img src="backdrop/teacher.png" alt="Teacher">
+        <div class="work-info">
+          <h3>Teacher</h3>
+          <p>Mengajar dengan pendekatan kreatif dan interaktif untuk meningkatkan pemahaman siswa, baik secara daring maupun luring.</p>
+        </div>
+      </div>
+
+      <!-- Editor -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="450">
+        <img src="backdrop/editor.png" alt="Editor">
+        <div class="work-info">
+          <h3>Editor</h3>
+          <p>Editing video dan foto untuk keperluan promosi, dokumentasi acara, dan konten media sosial dengan kualitas profesional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.recent-work {
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.container-work {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.work-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #1e1e1e;
+}
+
+.work-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 50px;
+}
+
+.work-subtitle a {
+  color: #7f00ff;
+  text-decoration: none;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.work-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+}
+
+.work-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.work-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.work-info h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #1e1e1e;
+}
+
+.work-info p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .work-title {
+    font-size: 26px;
+  }
+}
+</style>
+
+<!-- Sponsor -->
+<section class="sponsorship-section" id="sponsorship-section" data-aos="fade-up">
+  <div class="container-sponsorship">
+    <h2 class="section-title">Sponsor & Partner</h2>
+    <div class="sponsor-slider">
+      <div class="sponsor-track">
+        <!-- Logo 0–12 -->
+        <div class="sponsor-item"><img src="sponsor/logo0.png" alt="Sponsor 0"></div>
+        <div class="sponsor-item"><img src="sponsor/logo1.png" alt="Sponsor 1"></div>
+        <div class="sponsor-item"><img src="sponsor/logo2.png" alt="Sponsor 2"></div>
+        <div class="sponsor-item"><img src="sponsor/logo3.png" alt="Sponsor 3"></div>
+        <div class="sponsor-item"><img src="sponsor/logo4.png" alt="Sponsor 4"></div>
+        <div class="sponsor-item"><img src="sponsor/logo5.png" alt="Sponsor 5"></div>
+        <div class="sponsor-item"><img src="sponsor/logo6.png" alt="Sponsor 6"></div>
+        <div class="sponsor-item"><img src="sponsor/logo7.png" alt="Sponsor 7"></div>
+        <div class="sponsor-item"><img src="sponsor/logo8.png" alt="Sponsor 8"></div>
+        <div class="sponsor-item"><img src="sponsor/logo9.png" alt="Sponsor 9"></div>
+        <div class="sponsor-item"><img src="sponsor/logo10.png" alt="Sponsor 10"></div>
+        <div class="sponsor-item"><img src="sponsor/logo11.png" alt="Sponsor 11"></div>
+        <div class="sponsor-item"><img src="sponsor/logo12.png" alt="Sponsor 12"></div>
+
+        <!-- Duplikat untuk loop halus -->
+        <div class="sponsor-item"><img src="sponsor/logo0.png" alt="Sponsor 0"></div>
+        <div class="sponsor-item"><img src="sponsor/logo1.png" alt="Sponsor 1"></div>
+        <div class="sponsor-item"><img src="sponsor/logo2.png" alt="Sponsor 2"></div>
+        <div class="sponsor-item"><img src="sponsor/logo3.png" alt="Sponsor 3"></div>
+        <div class="sponsor-item"><img src="sponsor/logo4.png" alt="Sponsor 4"></div>
+        <div class="sponsor-item"><img src="sponsor/logo5.png" alt="Sponsor 5"></div>
+        <div class="sponsor-item"><img src="sponsor/logo6.png" alt="Sponsor 6"></div>
+        <div class="sponsor-item"><img src="sponsor/logo7.png" alt="Sponsor 7"></div>
+        <div class="sponsor-item"><img src="sponsor/logo8.jpg" alt="Sponsor 8"></div>
+        <div class="sponsor-item"><img src="sponsor/logo9.jpg" alt="Sponsor 9"></div>
+        <div class="sponsor-item"><img src="sponsor/logo10.png" alt="Sponsor 10"></div>
+        <div class="sponsor-item"><img src="sponsor/logo11.png" alt="Sponsor 11"></div>
+        <div class="sponsor-item"><img src="sponsor/logo12.png" alt="Sponsor 12"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .sponsorship-section {
+  background: #f9f9f9;
+  padding: 60px 0px;
+  overflow: hidden;
+}
+
+.container-sponsorship {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.sponsor-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.sponsor-track {
+  display: flex;
+  width: calc(250px * 10);
+  animation: scrollSponsors 20s linear infinite;
+}
+
+.sponsor-item {
+  flex: 0 0 auto;
+  width: 80px;
+  padding: 10px;
+  opacity: 0.8;
+  transition: transform 0.3s ease;
+}
+
+.sponsor-item:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.sponsor-item img {
+  max-width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.sponsor-item:hover img {
+  filter: grayscale(0%);
+}
+
+@keyframes scrollSponsors {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+</style>
+
+<!-- career-section -->
+<section class="career-section" id="career-section" data-aos="fade-up">
+  <div class="container-career">
+    <h2 class="section-title" data-aos="zoom-in">Riwayat Karir</h2>
+
+    <div class="career-block" data-aos="fade-right">
+      <h3 class="career-subtitle"><i class="fa-solid fa-graduation-cap"></i> Pendidikan</h3>
+      <ul class="career-timeline">
+        <li data-aos="fade-up">
+          <div class="timeline-icon"><i class="fa-solid fa-school"></i></div>
+          <div class="timeline-content">
+            <h4>SDN SARUNI 3</h4>
+            <span>2007 - 2013</span>
+          </div>
+        </li>
+        <li data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-icon"><i class="fa-solid fa-school-flag"></i></div>
+          <div class="timeline-content">
+            <h4>SMPN 1 Pandeglang</h4>
+            <span>2013 - 2016</span>
+          </div>
+        </li>
+        <li data-aos="fade-up" data-aos-delay="200">
+          <div class="timeline-icon"><i class="fa-solid fa-school"></i></div>
+          <div class="timeline-content">
+            <h4>SMAN 2 Pandeglang</h4>
+            <span>2016 - 2019</span>
+          </div>
+        </li>
+        <li data-aos="fade-up" data-aos-delay="300">
+          <div class="timeline-icon"><i class="fa-solid fa-university"></i></div>
+          <div class="timeline-content">
+            <h4>STKIP Syekh Manshur</h4>
+            <span>2020 - 2024</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="career-block" data-aos="fade-left">
+      <h3 class="career-subtitle"><i class="fa-solid fa-briefcase"></i> Pengalaman Kerja</h3>
+      <ul class="career-timeline">
+        <li data-aos="fade-up">
+          <div class="timeline-icon"><i class="fa-solid fa-store"></i></div>
+          <div class="timeline-content">
+            <h4>Marketing Deler Honda</h4>
+            <span>2020</span>
+          </div>
+        </li>
+        <li data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-icon"><i class="fa-solid fa-drumstick-bite"></i></div>
+          <div class="timeline-content">
+            <h4>Labbaik Chicken</h4>
+            <span>2020</span>
+          </div>
+        </li>
+        <li data-aos="fade-up" data-aos-delay="200">
+          <div class="timeline-icon"><i class="fa-solid fa-chalkboard-teacher"></i></div>
+          <div class="timeline-content">
+            <h4>SDIU Cahaya Al Fatih</h4>
+            <span>2022 - Sekarang</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="career-block" data-aos="fade-right">
+      <h3 class="career-subtitle"><i class="fa-solid fa-language"></i> Bahasa</h3>
+      <ul class="career-language">
+        <li data-aos="fade-up"><i class="fa-solid fa-check"></i> Indonesia</li>
+        <li data-aos="fade-up" data-aos-delay="100"><i class="fa-solid fa-check"></i> Inggris</li>
+      </ul>
+    </div>
+    
+    <div class="career-block" data-aos="fade-left">
+  <h3 class="career-subtitle"><i class="fa-solid fa-users-gear"></i> Pengalaman Organisasi</h3>
+  <ul class="career-timeline">
+    <li data-aos="fade-up">
+      <div class="timeline-icon"><i class="fa-solid fa-leaf"></i></div>
+      <div class="timeline-content">
+        <h4>Adiwiyata</h4>
+        <span>Anggota</span>
+      </div>
+    </li>
+    <li data-aos="fade-up" data-aos-delay="100">
+      <div class="timeline-icon"><i class="fa-solid fa-computer"></i></div>
+      <div class="timeline-content">
+        <h4>TIKOM (Teknologi Informasi dan Komunikasi)</h4>
+        <span>Pengurus</span>
+      </div>
+    </li>
+    <li data-aos="fade-up" data-aos-delay="200">
+      <div class="timeline-icon"><i class="fa-solid fa-mosque"></i></div>
+      <div class="timeline-content">
+        <h4>Rohis (Rohani Islam)</h4>
+        <span>Aktivis</span>
+      </div>
+    </li>
+    <li data-aos="fade-up" data-aos-delay="300">
+      <div class="timeline-icon"><i class="fa-solid fa-people-group"></i></div>
+      <div class="timeline-content">
+        <h4>MPK (Majelis Perwakilan Kelas)</h4>
+        <span>Ketua / Anggota</span>
+      </div>
+    </li>
+    <li data-aos="fade-up" data-aos-delay="400">
+      <div class="timeline-icon"><i class="fa-solid fa-building-columns"></i></div>
+      <div class="timeline-content">
+        <h4>LDK (Lembaga Dakwah Kampus)</h4>
+        <span>Pengurus</span>
+      </div>
+    </li>
+    <li data-aos="fade-up" data-aos-delay="500">
+      <div class="timeline-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+      <div class="timeline-content">
+        <h4>PMII (Pergerakan Mahasiswa Islam Indonesia)</h4>
+        <span>Anggota Aktif</span>
+      </div>
+    </li>
+    <li data-aos="fade-up" data-aos-delay="600">
+      <div class="timeline-icon"><i class="fa-solid fa-laptop-file"></i></div>
+      <div class="timeline-content">
+        <h4>Operator Sekolah / Kampus</h4>
+        <span>Petugas Pendataan</span>
+      </div>
+    </li>
+  </ul>
+</div>
+    
+  </div>
+
+  <!-- Wave Background di bawah -->
+  <div class="wave-bottom" data-aos="fade-up">
+    <svg viewBox="0 0 1440 600" width="100%" height="600" preserveAspectRatio="none">
+      <path fill="#555555" fill-opacity="1"
+        d="M0,0C200,100,400,400,600,400C800,400,1000,100,1200,100C1400,100,1600,400,1600,400L1600,600L0,600Z">
+      </path>
+      <path fill="#333333" fill-opacity="1"
+        d="M0,150C200,250,400,450,600,450C800,450,1000,250,1200,250C1400,250,1600,450,1600,450L1600,600L0,600Z">
+      </path>
+    </svg>
+  </div>
+</section>
+<style>
+.career-section {
+  position: relative;
+  padding: 60px 20px 160px; /* extra bottom space for wave */
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background: linear-gradient(to bottom, #f9f9f9 0%, #f1f1f1 100%);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.wave-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 0;
+}
+
+.wave-bottom svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.container-career {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  color: #2c3e50;
+}
+
+.career-subtitle {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.career-block {
+  margin-bottom: 60px;
+}
+
+.career-timeline {
+  list-style: none;
+  border-left: 3px solid #3498db;
+  padding-left: 30px;
+  margin: 0;
+  position: relative;
+}
+
+.career-timeline li {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -22px;
+  top: 15px;
+  background: #3498db;
+  color: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-content {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.timeline-content h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.timeline-content span {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.career-language {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.career-language li {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.career-language i {
+  color: #2ecc71;
+  margin-right: 8px;
+}
+</style>
+
+<!-- contact-section -->
+<section class="contact-section" id="contact-section">
+  <div class="container-contact" data-aos="fade-up">
+    <h2 class="section-title">Hubungi Saya</h2>
+    <p class="contact-description">Jika Anda memiliki pertanyaan atau ingin bekerja sama, silakan isi formulir di bawah ini.</p>
+
+   <form onsubmit="return sendToWhatsApp()" class="contact-form">
+      <div class="form-group floating-label">
+        <input type="text" id="name" name="name" placeholder=" " required>
+        <label for="name">Nama</label>
+      </div>
+
+      <div class="form-group floating-label">
+        <input type="email" id="email" name="email" placeholder=" " required>
+        <label for="email">Email</label>
+      </div>
+
+      <div class="form-group floating-label">
+        <input type="text" id="subject" name="subject" placeholder=" " required>
+        <label for="subject">Subjek</label>
+      </div>
+
+      <div class="form-group floating-label">
+        <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+        <label for="message">Pesan</label>
+      </div>
+
+      <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Kirim Pesan</button>
+    </form>
+  </div>
+</section>
+<script>
+  function sendToWhatsApp() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    const nomor = "62895339293938"; // Ganti dengan nomor kamu
+    const teks = `Assalamualaiakum, Wr. Wb%0A%0ANama: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0ASubjek: ${encodeURIComponent(subject)}%0APesan: ${encodeURIComponent(message)}`;
+
+    const url = `https://wa.me/${nomor}?text=${teks}`;
+
+    window.open(url, '_blank');
+    return false; // Mencegah form submit normal
+  }
+</script>
+<style>
+  .contact-section {
+    
+  padding: 60px 20px;
+  background-color: #333;
+}
+
+.container-contact {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.contact-description {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.contact-form .form-group {
+  margin-bottom: 25px;
+}
+
+.floating-label {
+  position: relative;
+}
+
+.floating-label input,
+.floating-label textarea {
+  width: 100%;
+  padding: 14px 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: transparent;
+  transition: 0.3s;
+  outline: none;
+}
+
+.floating-label textarea {
+  resize: vertical;
+}
+
+.floating-label label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  color: #999;
+  transform: translateY(-50%);
+  background: #fff;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.floating-label input:focus,
+.floating-label textarea:focus {
+  border-color: #007BFF;
+}
+
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label,
+.floating-label textarea:focus + label,
+.floating-label textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #007BFF;
+}
+
+.submit-btn {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+</style>
+
+
+<!-- Footer -->
+<footer class="custom-footer" id="custom-footer">
+  <div class="footer-container">
+    <p class="footer-title">Made With <span class="brand-name">Win Art Studio</span></p>
+    <div class="social-links">
+      <a href="https://wa.me/62895339293938" target="_blank" title="Chat via WhatsApp" class="social-link gradient-wa social-hover">
+        <i class="bi bi-whatsapp"></i> WhatsApp
+      </a>
+      <a href="https://www.facebook.com/ewint.hidayatullah" target="_blank" title="Follow on Facebook" class="social-link gradient-fb social-hover">
+        <i class="bi bi-facebook"></i> Facebook
+      </a>
+      <a href="https://www.instagram.com/windev01_?igsh=MWY4NXptZWx0bzdjYQ==" target="_blank" title="Follow on Instagram" class="social-link gradient-ig social-hover">
+        <i class="bi bi-instagram"></i> Instagram
+      </a>
+      <img 
+        src="https://visitor-badge.laobi.icu/badge?page_id=erwin-a11y.twibonzque" 
+        alt="visitor badge"
+        class="visitor-badge"
+      />
+    </div>
+    <div class="footer-copy">
+      <small>&copy; 2025 Win Art Studio. All Rights Reserved.</small>
+    </div>
+  </div>
+</footer>
+<style>
+
+/* Footer container */
+.custom-footer {
+  background: #333;
+  color: white;
+  padding: 2rem 1rem;
+  
+  text-align: center;
+}
+
+/* Inner wrapper */
+.footer-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Title and brand */
+.footer-title {
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.brand-name {
+  font-weight: bold;
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Link styles */
+.social-link {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  display: inline-block;
+  transition: all 0.4s ease-in-out;
+  color: white;
+}
+
+/* Gradients */
+.gradient-wa,
+.gradient-fb,
+.gradient-ig {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-wa {
+  background-image: linear-gradient(to right, #25D366, #128C7E);
+}
+
+.gradient-fb {
+  background-image: linear-gradient(to right, #1877F2, #003366);
+}
+
+.gradient-ig {
+  background-image: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+/* Hover effect */
+.social-hover:hover {
+  background-image: none !important;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+}
+
+/* Visitor badge */
+.visitor-badge {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  padding: 4px;
+  background-color: #f0f0f0;
+}
+
+/* Footer copy */
+.footer-copy {
+  margin-top: 1.5rem;
+}
+</style>
+
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Sebelum </body> -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
