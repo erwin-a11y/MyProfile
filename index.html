@@ -986,12 +986,6 @@ function typeText3c() {
   margin-top: 30px;
 }
 
-.sponsor-track {
-  display: flex;
-  width: calc(250px * 10);
-  animation: scrollSponsors 20s linear infinite;
-}
-
 .sponsor-item {
   flex: 0 0 auto;
   width: 80px;
@@ -1016,6 +1010,12 @@ function typeText3c() {
   filter: grayscale(0%);
 }
 
+  .sponsor-track {
+  display: flex;
+  width: max-content;
+  animation: scrollSponsors 30s linear infinite;
+}
+
 @keyframes scrollSponsors {
   0% {
     transform: translateX(0);
@@ -1023,7 +1023,7 @@ function typeText3c() {
   100% {
     transform: translateX(-50%);
   }
-}
+  }
 </style>
 
 <!-- career-section -->
